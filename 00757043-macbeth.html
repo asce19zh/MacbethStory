@@ -1,0 +1,177 @@
+<html>
+
+<head>
+
+  <title>Macbeth English project</title>
+</head>
+
+<body>
+  <link href='https://fonts.googleapis.com/css?family=Lato:700' rel='stylesheet' type='text/css'>
+  <div id="images">
+  </div>
+  <div id="text">
+  </div>
+  <div id="buttonBox">
+  </div>
+
+</body>
+<style type="text/CSS">
+  body {
+  color: white;
+  background-color: black;
+  font-size: 1.6em;
+  margin-left: 30%;
+  margin-right:30%;
+  font-family: '標楷體', sans-serif;
+  text-align:justify;
+}
+
+#images {
+  height: 500px;
+  width: 100%;
+  position: relative;
+  top:100;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 1em;
+}
+input {
+  width: 100%;
+  height: 30px;
+  text-align:center;
+  font-size: 1em;
+  margin-top:15px;
+}
+#buttonBox {
+  position: relative;
+  top:100;
+    text-align: center;
+}
+button{
+  margin-left: 10px;
+  margin-top: 15px;
+  height: 22px;
+  font-size: 14px;
+  font-family: '標楷體', sans-serif;
+}
+#text{
+  position: relative;
+  top:100;
+    background-color: white;
+    color: #003d99;
+}
+.speaker{
+  color:tomato;
+}
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 580px) {
+	body {
+	  margin-right: 10%;
+    margin-left: 10%;
+    
+  }
+}
+</style>
+<script type="text/javascript">
+  var images = document.getElementById("images");
+  var text = document.getElementById("text");
+  var buttonBox = document.getElementById('buttonBox');
+  var input = document.getElementById('input');
+  var yerdog;
+
+
+
+  var changeText = function (words) {
+    text.innerHTML = words.replace("Your dog", yerdog);
+  };
+
+  var changeImage = function (img) {
+    //images.innerHTML = "<img src = " + img +">";
+    images.style.backgroundImage = "url(" + img + ")";
+  };
+
+  var changeButtons = function (buttonList) {
+    buttonBox.innerHTML = "";
+    for (var i = 0; i < buttonList.length; i++) {
+      buttonBox.innerHTML += "<button onClick=" + buttonList[i][1] + ">" + buttonList[i][0] + "</button>";
+    }
+  };
+
+  var advanceTo = function (s) {
+    changeImage(s.image)
+    changeText(s.text)
+    changeButtons(s.buttons)
+  };
+
+
+  scenario = {}
+  var scenario = {
+    one: {
+      image: "https://i.imgur.com/dAH2Flr.jpg", //dog
+      text: "序:<br>馬克白與班戈遇到了三名女巫，預言著馬克白不僅會成為考特勳爵，甚至將成為王",
+      buttons: [["Click to continue", "advanceTo(scenario.two)"]]
+    },
+    two: {
+      image: "https://i.imgur.com/cz4stYM.png", //house
+      text: "<span class = 'speaker'>First Witch:</span><br>「All hail, Macbeth! hail to thee, thane of Glamis!」<br><span class = 'speaker'>Second Witch:</span><br>「All hail, Macbeth, hail to thee, thane of Cawdor!」<br><span class = 'speaker'>Third Witch:</span><br>「All hail, Macbeth, thou shalt be king hereafter!」",
+      buttons: [["Click to continue", "advanceTo(scenario.three)"]]
+    },
+    three: {
+      image: "https://i.imgur.com/cz4stYM.png",
+      text: "<span class = 'speaker'>First Witch:</span><br>「You are lesser than Macbeth but also greater.」<br><span class = 'speaker'>Second Witch:</span><br>「You are not as happy as Macbeth, yet much happier.」<br><span class = 'speaker'>Third Witch:</span><br>「Your descendants will be kings, even though you will not be one. So all hail, Macbeth and Banquo!」",
+      buttons: [["Click to continue", "advanceTo(scenario.four)"]]
+    },
+    four: {
+      image: "https://i.imgur.com/q6BuLX9.png",
+      text: "當馬克白成為巫女所預言的考特勳爵後，他的良心使他對巫女的預言感到害怕，但在被妻子的強烈慫恿之下，他決定...",
+      buttons: [["殺了國王", "advanceTo(scenario.five)"], ["不殺國王", "advanceTo(scenario.six)"]]
+    },
+    five: {
+      image: "https://i.imgur.com/ytk9xFP.png",
+      text: "殺了國王之後，憑著妻子的善後，幫他卸責，他成功登基稱王，但這並沒有替他解除他的憂心感，殺害了仁慈的鄧肯使他每天都被良心苛責，更開始擔心他成為王就代表著班戈的子孫也將成為王，在這些煩惱之下，他選擇...",
+      buttons: [["殺了班戈與他的小孩，永絕後患", "advanceTo(scenario.seven)"], ["不殺，將自身交給命運決定", "advanceTo(scenario.eight)"]]
+    },
+    six: {
+      image: "https://pic.pimg.tw/kotomiair/1455249274-2944479514.jpg",
+      text: "馬克白不顧妻子的強烈意見，選擇不殺國王之後，心情豁然開朗，雖然成就不了野心，但對於待在考特爵士的位子上並沒有怨言。",
+      buttons: [["回到上一頁", "advanceTo(scenario.four)"], ["回到首頁", "advanceTo(scenario.one)"]]
+    },
+    seven: {
+      image: "https://i.imgur.com/wCyGzOl.png",
+      text: "在派刺客去了之後卻得到班戈他小孩逃掉的消息，使他的心情完全沒有好轉，甚至罪惡感已經使他看見亡者的幻影，發神經似的行動讓周圍的人開始感到異樣。",
+      buttons: [["Click to continue", "advanceTo(scenario.nine)"]]
+    },
+    eight: {
+      image: "https://pic.pimg.tw/kotomiair/1455249274-2944479514.jpg",
+      text: "If chance will have me king, why, chance may crown me, Without my stir<br> 馬克白曾經這樣說過，命中注定的事並不需要自己多費力，所以或許殺與不殺，都不影響馬克白的結局，馬克白決定放下心中的煩腦，好好過日子，享受最後一份清閒。",
+      buttons: [["回到上一頁", "advanceTo(scenario.five)"], ["回到首頁", "advanceTo(scenario.one)"]]
+    },
+    nine: {
+      image: "https://i.imgur.com/Dw16tLw.png",
+      text: "他決定出發尋求女巫的幫助，在那邊，他聽到要「留心麥克德夫」。然後，一個血淋淋的兒童告訴他「沒有一個婦人所生下的人可以傷害馬克白」。第三，一個加冕的小孩告訴他「不會被人打敗，除非有一天勃南的樹林會向鄧西嫩高山移動」。",
+      buttons: [["Click to continue", "advanceTo(scenario.ten)"]]
+    },
+    ten: {
+      image: "",
+      text: "在聽到這些話之後，馬克白認為自己不可能輸，於是滿足地要離開時，卻聽到麥克德夫流亡英格蘭的消息，這次他決定...",
+      buttons: [["還是為了保險把麥克德夫家抄了", "advanceTo(scenario.s11)"], ["既然自己不會被打敗，那便不用去處理麥克德夫", "advanceTo(scenario.s12)"]]
+    }
+    ,
+    s11: {
+      image: "https://i.imgur.com/2jjXzkK.png",
+      text: "在聽到所有與自己有關的人都被滅了的麥克德夫誓言復仇，加入了正在籌備兵力攻打馬克白的馬爾康底下，使得預言的立下的flag都成真了，就此奠定了馬克白要在此戰役被麥克德夫手刃的結果。 Fin.",
+      buttons: [["回到首頁", "advanceTo(scenario.one)"]]
+    }
+    ,
+    s12: {
+      image: "https://pic.pimg.tw/kotomiair/1455249274-2944479514.jpg",
+      text: "因為沒有殺了麥克德夫的妻小，所以沒有令麥克德夫氣到馬上回來算帳，而多活了一段時光。",
+      buttons: [["回到上一頁", "advanceTo(scenario.ten)"], ["回到首頁", "advanceTo(scenario.one)"]]
+    }
+  };
+
+  advanceTo(scenario.one)
+</script>
+
+</html>
